@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import '../components/category_item.dart';
+import '../data/dummy_data.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GridView(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Vamos cozinhar'),
+        centerTitle: true,
+      ),
+      body: GridView(
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 200,
             childAspectRatio: 3 / 2,
             crossAxisSpacing: 20,
-            mainAxisSpacing: 20));
+            mainAxisSpacing: 20),
+        children:
+            DUMMY_CATEGORIES.map((cat) => CategoryItem(category: cat)).toList(),
+      ),
+    );
   }
 }
