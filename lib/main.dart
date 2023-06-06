@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: const TabsScreen(),
+      home: TabsScreen(),
     );
   }
 }
