@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './screens/categories_screen.dart';
+import 'screens/settings_screen.dart';
 import './screens/categories_meals_screen.dart';
 import './screens/meal_detail_screen.dart';
 import './utils/app-routes.dart';
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       title: 'DeliMeals',
       routes: {
         AppRoutes.CATEGORIES_MEALS: (ctx) => const CategoriesMealsScreen(),
-        AppRoutes.MEALS_DETAIL: (ctx) => const MealDetailScreen()
+        AppRoutes.MEALS_DETAIL: (ctx) => const MealDetailScreen(),
+        AppRoutes.SETTINGS: (ctx) => const SettingsScreen()
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: TabsScreen(),
+      home: const TabsScreen(),
     );
   }
 }
