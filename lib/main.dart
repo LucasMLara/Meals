@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'DeliMeals',
       routes: {
-        AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(),
-        AppRoutes.MEALS_DETAIL: (ctx) => MealDetailScreen()
+        AppRoutes.CATEGORIES_MEALS: (ctx) => const CategoriesMealsScreen(),
+        AppRoutes.MEALS_DETAIL: (ctx) => const MealDetailScreen()
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
