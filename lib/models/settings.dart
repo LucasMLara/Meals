@@ -4,9 +4,10 @@ class Settings {
   bool isVegan;
   bool isVegetarian;
 
-  Settings(
-      {this.isGlutenFree = false,
-      this.isLactoseFree = false,
-      this.isVegan = false,
-      this.isVegetarian = false});
+  Settings({
+    this.isGlutenFree = false,
+    this.isLactoseFree = false,
+    this.isVegan = false,
+    this.isVegetarian = false,
+  });
 }

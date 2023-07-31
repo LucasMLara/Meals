@@ -4,17 +4,17 @@ import '../models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
   final Settings settings;
-
   final Function(Settings) onSettingsChanged;
-  const SettingsScreen(
-      {super.key, required this.onSettingsChanged, required this.settings});
+
+  const SettingsScreen(this.settings, this.onSettingsChanged, {Key? key})
+      : super(key: key);
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  var settings = Settings();
+  Settings? settings;
 
   @override
   void initState() {
@@ -29,59 +29,64 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Function(bool) onChanged,
   ) {
     return SwitchListTile.adaptive(
-        title: Text(title),
-        subtitle: Text(subtitle),
-        value: value,
-        onChanged: (value) {
-          onChanged(value);
-          widget.onSettingsChanged(settings);
-        });
+      title: Text(title),
+      subtitle: Text(subtitle),
+      value: value,
+      onChanged: (value) {
+        onChanged(value);
+        widget.onSettingsChanged(settings!);
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const MainDrawer(),
-        appBar: AppBar(
-            title: const Text(
-          'Configurações',
-        )),
-        body: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                'Configurações',
-                style: Theme.of(context).textTheme.headline4,
-              ),
+      appBar: AppBar(
+        title: const Text('Configurações'),
+      ),
+      drawer: const MainDrawer(),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            child: Text(
+              'Configurações',
+              style: Theme.of(context).textTheme.headline6,
             ),
-            Expanded(
-              child: ListView(
-                children: [
-                  _createSwitch(
-                      'Sem Glútem',
-                      'Só exibe refeições sem glúten',
-                      settings.isGlutenFree,
-                      (p0) => setState(() => settings.isGlutenFree = p0)),
-                  _createSwitch(
-                      'Sem lactose',
-                      'Só exibe refeições sem lactose',
-                      settings.isLactoseFree,
-                      (p0) => setState(() => settings.isLactoseFree = p0)),
-                  _createSwitch(
-                      'Vegana',
-                      'Só exibe refeições Veganas',
-                      settings.isVegan,
-                      (p0) => setState(() => settings.isVegan = p0)),
-                  _createSwitch(
-                      'Vegetariana',
-                      'Só exibe refeições Vegetarianas',
-                      settings.isVegetarian,
-                      (p0) => setState(() => settings.isVegetarian = p0)),
-                ],
-              ),
-            )
-          ],
-        ));
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                _createSwitch(
+                  'Sem Glutén',
+                  'Só exibe refeições sem glúten!',
+                  settings!.isGlutenFree,
+                  (value) => setState(() => settings!.isGlutenFree = value),
+                ),
+                _createSwitch(
+                  'Sem Lactose',
+                  'Só exibe refeições sem lactose!',
+                  settings!.isLactoseFree,
+                  (value) => setState(() => settings!.isLactoseFree = value),
+                ),
+                _createSwitch(
+                  'Vegana',
+                  'Só exibe refeições veganas!',
+                  settings!.isVegan,
+                  (value) => setState(() => settings!.isVegan = value),
+                ),
+                _createSwitch(
+                  'Vegetariana',
+                  'Só exibe refeições vegetarianas!',
+                  settings!.isVegetarian,
+                  (value) => setState(() => settings!.isVegetarian = value),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
